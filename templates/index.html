@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Root Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>Root Calculator</h1>
+    <form method="POST">
+        <div class="function-div">
+            <p class="function">
+                <input type="text" class= "function-data" name="a0"> + 
+                <input type="text" class= "function-data" name="a1"> x + 
+                <input type="text" class= "function-data" name="a2"> x² +
+                <input type="text" class= "function-data" name="a3"> x³ + 
+                <input type="text" class= "function-data" name="a4"> x⁴ + 
+                <input type="text" class= "function-data" name="a5"> x⁵ +
+                <input type="text" class= "function-data" name="a6"> x⁶ + 
+                <input type="text" class= "function-data" name="a7"> x⁷ + 
+                <input type="text" class= "function-data" name="a8"> x⁸ + 
+                <input type="text" class= "function-data" name="a9"> x⁹ + 
+                <input type="text" class= "function-data" name="a10"> x¹⁰ +
+                <input type="text" class= "function-data" name="a11"> x¹¹ + 
+                <input type="text" class= "function-data" name="a12"> x¹² + 
+                <input type="text" class= "function-data" name="a13"> x¹³ +
+                <input type="text" class= "function-data" name="a14"> x¹⁴ + 
+                <input type="text" class= "function-data" name="a15"> x¹⁵ + 
+                <input type="text" class= "function-data" name="a16"> x¹⁶ + 
+                <input type="text" class= "function-data" name="a17"> x¹⁷ + 
+                <input type="text" class= "function-data" name="a18"> x¹⁸ + 
+                <input type="text" class= "function-data" name="a19"> x¹⁹ + 
+                <input type="text" class= "function-data" name="a20"> x²⁰ + 
+                <input type="text" class= "function-data" name="k"> cos(x)
+            </p> 
+        </div>
+
+        <div class="interactive">
+            <div class="data-input">
+                <h2>Input Data</h2>
+                <p class="data-input">Polinomial degree</p>
+                <p class="data-input"><input type="text" name="p_degree" id=""></br></p>
+                <p class="data-input">Initial value</p>
+                <p class="data-input"><input type="text" name="initial_value"></br></p>
+                <p class="data-input">Maximum number of iterations</p>
+                <p class="data-input"><input type="text" name="max_iterations"></br></p>
+                <p class="data-input">Tolerance</p>
+                <p class="data-input"><input type="text" name="tolerance"></br></p>
+                <p class="data-input"><input type="submit" value="Calculate"></br></p>
+
+                <h2>Results </h2>
+                <p class="data-output">Root x = {{ html_x_result }}</br></p>
+                <p class="data-output">Absolute error = {{ html_error_result }}</br></p>
+            </div>
+        
+            <div class="graph">
+                <p></p>
+            </div>
+        </div>
+    </form>
+
+</body>
+
+</html>

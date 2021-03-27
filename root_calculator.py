@@ -41,8 +41,14 @@ def plot_error(f, f_args, i_number, x0):
 
     for i in range(i_number):
         xn = sco.fsolve(f, xn, args=f_args, maxfev=1)
-        print(np.abs(xn - real_result))
         i += 1
+    
+    return np.abs(xn - real_result)
+
+def calculate(initial_value, max_iterations, tolerance, args):
+    root, infodict = root_calculator(f_function, initial_value, max_iterations, tolerance, args)
+    error = plot_error(f_function, args, infodict["nfev"], 2)
+    return root, error
 
 if __name__ == "__main__":
     args = (3, [3, -7, -1, 8], 8)
