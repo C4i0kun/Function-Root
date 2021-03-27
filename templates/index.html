@@ -12,28 +12,32 @@
     <form method="POST">
         <div class="function-div">
             <p class="function">
-                <input type="text" class= "function-data" name="a0"> + 
-                <input type="text" class= "function-data" name="a1"> x + 
-                <input type="text" class= "function-data" name="a2"> x² +
-                <input type="text" class= "function-data" name="a3"> x³ + 
-                <input type="text" class= "function-data" name="a4"> x⁴ + 
-                <input type="text" class= "function-data" name="a5"> x⁵ +
-                <input type="text" class= "function-data" name="a6"> x⁶ + 
-                <input type="text" class= "function-data" name="a7"> x⁷ + 
-                <input type="text" class= "function-data" name="a8"> x⁸ + 
-                <input type="text" class= "function-data" name="a9"> x⁹ + 
-                <input type="text" class= "function-data" name="a10"> x¹⁰ +
-                <input type="text" class= "function-data" name="a11"> x¹¹ + 
-                <input type="text" class= "function-data" name="a12"> x¹² + 
-                <input type="text" class= "function-data" name="a13"> x¹³ +
-                <input type="text" class= "function-data" name="a14"> x¹⁴ + 
-                <input type="text" class= "function-data" name="a15"> x¹⁵ + 
-                <input type="text" class= "function-data" name="a16"> x¹⁶ + 
-                <input type="text" class= "function-data" name="a17"> x¹⁷ + 
-                <input type="text" class= "function-data" name="a18"> x¹⁸ + 
-                <input type="text" class= "function-data" name="a19"> x¹⁹ + 
-                <input type="text" class= "function-data" name="a20"> x²⁰ + 
-                <input type="text" class= "function-data" name="k"> cos(x)
+                <p class="function-model">
+                    <input type="text" class= "function-data" name="a0"> + 
+                    <input type="text" class= "function-data" name="a1"> x + 
+                    <input type="text" class= "function-data" name="a2"> x² +
+                    <input type="text" class= "function-data" name="a3"> x³ + 
+                    <input type="text" class= "function-data" name="a4"> x⁴ + 
+                    <input type="text" class= "function-data" name="a5"> x⁵ +
+                    <input type="text" class= "function-data" name="a6"> x⁶ + 
+                    <input type="text" class= "function-data" name="a7"> x⁷ + 
+                    <input type="text" class= "function-data" name="a8"> x⁸ + 
+                    <input type="text" class= "function-data" name="a9"> x⁹ + 
+                    <input type="text" class= "function-data" name="a10"> x¹⁰ 
+                </p>
+                <p class="function-model">
+                    <input type="text" class= "function-data" name="a11"> x¹¹ + 
+                    <input type="text" class= "function-data" name="a12"> x¹² + 
+                    <input type="text" class= "function-data" name="a13"> x¹³ +
+                    <input type="text" class= "function-data" name="a14"> x¹⁴ + 
+                    <input type="text" class= "function-data" name="a15"> x¹⁵ + 
+                    <input type="text" class= "function-data" name="a16"> x¹⁶ + 
+                    <input type="text" class= "function-data" name="a17"> x¹⁷ + 
+                    <input type="text" class= "function-data" name="a18"> x¹⁸ + 
+                    <input type="text" class= "function-data" name="a19"> x¹⁹ + 
+                    <input type="text" class= "function-data" name="a20"> x²⁰ + 
+                    <input type="text" class= "function-data" name="k"> cos(x)
+                </p>
             </p> 
         </div>
 
@@ -53,10 +57,11 @@
                 <h2>Results </h2>
                 <p class="data-output">Root x = {{ html_x_result }}</br></p>
                 <p class="data-output">Absolute error = {{ html_error_result }}</br></p>
+                <p class="data-output">Number of iterations = {{ html_iterations_result }}</br></p>
             </div>
         
             <div class="graph">
-                <p></p>
+                <p class="graph"><img src="{{ url_for('static', filename=graph) }}"/></p>
             </div>
         </div>
     </form>

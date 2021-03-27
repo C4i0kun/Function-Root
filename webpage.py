@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def main_page():
-    return render_template('index.html')
+    return render_template('index.html', graph='img/default.png')
 
 @app.route('/', methods=['POST'])
 def get_data():
@@ -23,9 +23,9 @@ def get_data():
     
     k = float(request.form.get('k'))
 
-    result, error = calculate(initial_value, max_iterations, tolerance, (p_degree, coefficients, k))
+    result, error, iterations, graph_name = calculate(initial_value, max_iterations, tolerance, (p_degree, coefficients, k))
 
-    return render_template('index.html', html_x_result=str(result[0]), html_error_result=str(error[0]))
+    return render_template('index.html', html_x_result=str(result[0]), html_error_result=str(error[0]), html_iterations_result=str(iterations), graph='img/' + graph_name)
 
 if __name__ == "__main__":
     app.run(debug=True)

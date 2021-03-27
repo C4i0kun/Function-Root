@@ -1,5 +1,10 @@
 import numpy as np
 import scipy.optimize as sco
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import os
+import time
 
 def f_function(x, *f_args):
     """Calculate the result of function f(x) = p(x) + kcos(x).
@@ -38,21 +43,39 @@ def root_calculator(f, x0, i_max, x_tol, f_args):
 def plot_error(f, f_args, i_number, x0):
     real_result = sco.fsolve(f, x0, args=f_args)
     xn = x0
+    errors = []
+    x_axis = []
+
+    plt.style.use('dark_background')
 
     for i in range(i_number):
         xn = sco.fsolve(f, xn, args=f_args, maxfev=1)
+        errors.append(np.abs(xn - real_result))
+        x_axis.append(i+1)
         i += 1
     
-    return np.abs(xn - real_result)
+    plt.plot(errors)
+    plt.title("Absolute error per iteration")
+    plt.xlabel("Number of iteration")
+    plt.ylabel("Absolute error")
+    graph_name = "graph" + str(time.time()) + ".png"
+
+    for filename in os.listdir('static/img'):
+        if filename.startswith('graph'):
+            os.remove('static/img/' + filename)
+
+    plt.savefig('static/img/' + graph_name)
+
+    return np.abs(xn - real_result), graph_name
 
 def calculate(initial_value, max_iterations, tolerance, args):
     root, infodict = root_calculator(f_function, initial_value, max_iterations, tolerance, args)
-    error = plot_error(f_function, args, infodict["nfev"], 2)
-    return root, error
+    error, graph_name = plot_error(f_function, args, infodict["nfev"], 2)
+    return root, error, infodict["nfev"], graph_name
 
 if __name__ == "__main__":
-    args = (3, [3, -7, -1, 8], 8)
-    root, infodict = root_calculator(f_function, -1, 100, 0.0000001, args)
+    args = (2, [1, -2, 1], 0)
+    root, infodict = root_calculator(f_function, 1.5, 100, 0.0000001, args)
     print(root)
     plot_error(f_function, args, infodict["nfev"], 2)
     
