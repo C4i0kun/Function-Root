@@ -1,1 +1,1 @@
-web: gunicorn app:webpage
+web: gunicorn webpage:function-root
