@@ -65,6 +65,7 @@ def plot_error(f, f_args, i_number, x0):
             os.remove('static/img/' + filename)
 
     plt.savefig('static/img/' + graph_name)
+    plt.clf()
 
     return np.abs(xn - real_result), graph_name
 
@@ -76,6 +77,9 @@ def calculate(initial_value, max_iterations, tolerance, args):
 if __name__ == "__main__":
     args = (2, [1, -2, 1], 0)
     root, infodict = root_calculator(f_function, 1.5, 100, 0.0000001, args)
-    print(root)
+    plot_error(f_function, args, infodict["nfev"], 2)
+
+    args = (2, [1, -5, 1], 0)
+    root, infodict = root_calculator(f_function, 1.5, 100, 0.0000001, args)
     plot_error(f_function, args, infodict["nfev"], 2)
     
