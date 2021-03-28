@@ -35,12 +35,28 @@ def root_calculator(f, x0, i_max, x_tol, f_args):
     x0 (float): initial iteration value
     i_max (int): max number of iteration
     x_tol (float): iteration tolerance
-    args (tuple): extra arguments of f
+    f_args (tuple): extra arguments of f
+
+    Returns:
+    float: root of function f
+    dictionary: dictionary with extra informations
     """
     root, infodict, _, _ = sco.fsolve(f, x0, args = f_args, xtol = x_tol, maxfev = i_max, full_output=True)
     return root, infodict
 
 def plot_error(f, f_args, i_number, x0):
+    """Calculate and plot absolute error
+
+    Keyword arguments:
+    f (function): function f
+    f_args (tuple): arguments of function f
+    i_number (int): number of iterations done
+    x0 (float): initial iteration value
+
+    Returns:
+    float: absolute error
+    string: name of generated graph
+    """
     real_result = sco.fsolve(f, x0, args=f_args)
     xn = x0
     errors = []
@@ -70,6 +86,20 @@ def plot_error(f, f_args, i_number, x0):
     return np.abs(xn - real_result), graph_name
 
 def calculate(initial_value, max_iterations, tolerance, args):
+    """Start calculations
+
+    Keyword arguments:
+    initial_value (float): initial value of iterations
+    max_iterations (int): max number of iterations to do
+    tolerance (float): tolerance of 
+    args (tuple): extra arguments of function f
+
+    Returns:
+    float: root of function
+    float: absolute error
+    dictionary: extra informations
+    string: name of generated graph
+    """
     root, infodict = root_calculator(f_function, initial_value, max_iterations, tolerance, args)
     error, graph_name = plot_error(f_function, args, infodict["nfev"], 2)
     return root, error, infodict["nfev"], graph_name
